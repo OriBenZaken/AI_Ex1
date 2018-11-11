@@ -4,13 +4,13 @@ import java.util.List;
 /**
  * Created by אורי on 11/11/2018.
  */
-public class BoardState implements IState<Integer[][], Operators> {
+public class BoardState implements IState<Integer[][], CommonEnums.Operators> {
     // Members
     Integer[][] board;
     BoardState parent;
-    Operators originOperator;
+    CommonEnums.Operators originOperator;
 
-    public BoardState(Integer[][] state, BoardState parent, Operators originOperator ) {
+    public BoardState(Integer[][] state, BoardState parent, CommonEnums.Operators originOperator ) {
         this.board = state;
         this.parent = parent;
         this.originOperator = originOperator;
@@ -26,16 +26,16 @@ public class BoardState implements IState<Integer[][], Operators> {
     }
 
     @Override
-    public Operators getOriginOpertaor() {
+    public CommonEnums.Operators getOriginOpertaor() {
         return this.originOperator;
     }
 
-    public List<BoardState> getSons() {
-        List<BoardState> sons = new ArrayList<>();
+    public List<BoardState> getSuccessors() {
+        List<BoardState> successors = new ArrayList<>();
         int row = 0;
         int col = 0;
         for(int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board.length; j++) {
+            for (int j = 0; j < board.length; j++) {
                 if (board[i][j].intValue() == 0) {
                     row = i;
                     col = j;
@@ -44,35 +44,31 @@ public class BoardState implements IState<Integer[][], Operators> {
             }
         }
 
-        if (row == 0) {
-            return null;
+        List<CommonEnums.Operators> validSteps = getValidOperatorsForCurrentState(row,col);
+        for (CommonEnums.Operators opertor : validSteps) {
+            successors.add(developeSuccessors(getBoardCopy(), row, col, opertor));
         }
-
-        List<Operators> validSteps = getValidOperatorsForCurrentState(row,col);
-        for (Operators opertor : validSteps) {
-            sons.add(developSon(getBoardCopy(), row, col, opertor));
-        }
-        return sons;
+        return successors;
     }
 
-    private List<Operators> getValidOperatorsForCurrentState(int row, int col) {
-        List<Operators> validSteps = new ArrayList<>();
+    private List<CommonEnums.Operators> getValidOperatorsForCurrentState(int row, int col) {
+        List<CommonEnums.Operators> validSteps = new ArrayList<>();
         if (row > 0) {
-            validSteps.add(Operators.UP);
+            validSteps.add(CommonEnums.Operators.UP);
         }
         if (row < board.length - 1) {
-            validSteps.add(Operators.DOWN);
+            validSteps.add(CommonEnums.Operators.DOWN);
         }
         if (col > 0) {
-            validSteps.add(Operators.LEFT);
+            validSteps.add(CommonEnums.Operators.LEFT);
         }
         if (col < board.length - 1) {
-            validSteps.add(Operators.RIGHT);
+            validSteps.add(CommonEnums.Operators.RIGHT);
         }
         return validSteps;
     }
 
-    private BoardState developSon(Integer[][] boardCopy,int row, int col, Operators operator) {
+    private BoardState developeSuccessors(Integer[][] boardCopy, int row, int col, CommonEnums.Operators operator) {
         switch (operator) {
             case UP:
                 boardCopy[row][col] = boardCopy[row-1][col];
@@ -113,6 +109,22 @@ public class BoardState implements IState<Integer[][], Operators> {
                 if (board[i][j] != otherBoard[i][j]) {
                     return false;
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean isGoal() {
+        int count = 1;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j] != count) {
+                    if (i == board.length - 1 && j == board.length - 1 && board[i][j] == 0) {
+                        continue;
+                    }
+                    return false;
+                }
+                count++;
             }
         }
         return true;
