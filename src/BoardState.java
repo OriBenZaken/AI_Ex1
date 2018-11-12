@@ -46,45 +46,45 @@ public class BoardState implements IState<Integer[][], CommonEnums.Operators> {
 
         List<CommonEnums.Operators> validSteps = getValidOperatorsForCurrentState(row,col);
         for (CommonEnums.Operators opertor : validSteps) {
-            successors.add(developeSuccessors(getBoardCopy(), row, col, opertor));
+            successors.add(developSuccessors(getBoardCopy(), row, col, opertor));
         }
         return successors;
     }
 
     private List<CommonEnums.Operators> getValidOperatorsForCurrentState(int row, int col) {
         List<CommonEnums.Operators> validSteps = new ArrayList<>();
-        if (row > 0) {
+        if (row < board.length - 1) {
             validSteps.add(CommonEnums.Operators.UP);
         }
-        if (row < board.length - 1) {
+        if (row > 0) {
             validSteps.add(CommonEnums.Operators.DOWN);
         }
-        if (col > 0) {
+        if (col < board.length - 1) {
             validSteps.add(CommonEnums.Operators.LEFT);
         }
-        if (col < board.length - 1) {
+        if (col > 0) {
             validSteps.add(CommonEnums.Operators.RIGHT);
         }
         return validSteps;
     }
 
-    private BoardState developeSuccessors(Integer[][] boardCopy, int row, int col, CommonEnums.Operators operator) {
+    private BoardState developSuccessors(Integer[][] boardCopy, int row, int col, CommonEnums.Operators operator) {
         switch (operator) {
             case UP:
-                boardCopy[row][col] = boardCopy[row-1][col];
-                boardCopy[row-1][col] = 0;
-                break;
-            case DOWN:
                 boardCopy[row][col] = boardCopy[row+1][col];
                 boardCopy[row+1][col] = 0;
                 break;
-            case LEFT:
-                boardCopy[row][col] = boardCopy[row][col-1];
-                boardCopy[row][col-1] = 0;
+            case DOWN:
+                boardCopy[row][col] = boardCopy[row-1][col];
+                boardCopy[row-1][col] = 0;
                 break;
-            case RIGHT:
+            case LEFT:
                 boardCopy[row][col] = boardCopy[row][col+1];
                 boardCopy[row][col+1] = 0;
+                break;
+            case RIGHT:
+                boardCopy[row][col] = boardCopy[row][col-1];
+                boardCopy[row][col-1] = 0;
                 break;
             default:
                 break;
