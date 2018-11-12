@@ -1,5 +1,6 @@
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Operators;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -30,8 +31,8 @@ abstract public class AbstractSearchAlgo implements ISerachAlgorithm {
     public String getSolutionPath() {
         StringBuilder stringBuilder = new StringBuilder();
         BoardState state = currentState;
-        while (state.parent != null) {
-            stringBuilder.insert(0, CommonEnums.getOperatorAbbrevation(state.originOperator));
+        while (state.getParent() != null) {
+            stringBuilder.insert(0, CommonEnums.getOperatorAbbrevation(state.getOriginOpertaor()));
             state = state.getParent();
         }
         return stringBuilder.toString();

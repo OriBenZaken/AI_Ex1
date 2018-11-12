@@ -6,14 +6,20 @@ import java.util.List;
  */
 public class BoardState implements IState<Integer[][], CommonEnums.Operators> {
     // Members
-    Integer[][] board;
-    BoardState parent;
-    CommonEnums.Operators originOperator;
+    private Integer[][] board;
+    private BoardState parent;
+    private CommonEnums.Operators originOperator;
+    private int depth;
 
     public BoardState(Integer[][] state, BoardState parent, CommonEnums.Operators originOperator ) {
         this.board = state;
         this.parent = parent;
         this.originOperator = originOperator;
+        if (parent == null) {
+            this.depth = 0;
+        } else {
+            this.depth = this.parent.getDepth() + 1;
+        }
     }
     @Override
     public Integer[][] getBoard() {
@@ -28,6 +34,10 @@ public class BoardState implements IState<Integer[][], CommonEnums.Operators> {
     @Override
     public CommonEnums.Operators getOriginOpertaor() {
         return this.originOperator;
+    }
+
+    public int getDepth() {
+        return this.depth;
     }
 
     public List<BoardState> getSuccessors() {

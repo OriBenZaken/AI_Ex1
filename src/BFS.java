@@ -13,6 +13,7 @@ public class BFS extends AbstractSearchAlgo {
     public BFS(Integer[][] initialBoard) {
         this.currentState = new BoardState(initialBoard, null, null);
         this.openList = new LinkedList<>();
+        this.cost = 0;
     }
 
     @Override
@@ -27,9 +28,10 @@ public class BFS extends AbstractSearchAlgo {
             }
             List<BoardState> successors = this.currentState.getSuccessors();
             for (BoardState successor : successors) {
-                if (! isStateInList(openList, successor) && ! isStateInList(closedList, successor)) {
+                /*if (! isStateInList(openList, successor) && ! isStateInList(closedList, successor)) {
                     this.openList.add(successor);
-                }
+                }*/
+                this.openList.add(successor);
             }
             System.out.println("Iteration: " + i);
             i++;

@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,11 +17,24 @@ public class Main {
     static Integer[][] initialState;
 
     public static void main(String[] args) {
-        System.out.println("Hi");
-        getProblemDefinesFromFile("input.txt");
-        ISerachAlgorithm serachAlgorithm = new BFS(initialState);
-        serachAlgorithm.runSearch();
-        System.out.println(serachAlgorithm.getSolutionPath());
+        getProblemDefinesFromFile("input3.txt");
+        ISerachAlgorithm searchAlgorithm = null;
+        switch (algoType) {
+            case BFS:
+                searchAlgorithm = new BFS(initialState);
+                break;
+            case IDS:
+                searchAlgorithm = new IDS(initialState);
+                break;
+            case A_STAR:
+                searchAlgorithm = new A_Star(initialState);
+                break;
+                default:
+                    System.exit(1);
+        }
+        searchAlgorithm.runSearch();
+        System.out.println(searchAlgorithm.getSolutionPath());
+        writeResultsToFile(searchAlgorithm, "output_test.txt");
         return;
     }
 
@@ -56,5 +66,21 @@ public class Main {
             System.exit(1);
         }
 
+    }
+
+    public static void writeResultsToFile(ISerachAlgorithm algorithm, String fileName) {
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(new FileWriter(fileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(algorithm.getSolutionPath() + " ");
+        sb.append(algorithm.getClosedListSize() + " ");
+        sb.append(algorithm.getCost());
+        pw.write(sb.toString());
+        pw.close();
     }
 }
