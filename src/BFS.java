@@ -12,14 +12,15 @@ public class BFS extends AbstractSearchAlgo {
 
     public BFS(Integer[][] initialBoard) {
         this.currentState = new BoardState(initialBoard, null, null);
+        // the open list in BFS is a regular queue.
         this.openList = new LinkedList<>();
+        // the cost defined to be 0
         this.cost = 0;
     }
 
     @Override
     public boolean runSearch() {
         openList.add(this.currentState);
-        int i = 0;
         while (!this.openList.isEmpty()) {
             this.currentState = this.openList.remove();
             this.closedList.add(currentState);
@@ -28,17 +29,18 @@ public class BFS extends AbstractSearchAlgo {
             }
             List<BoardState> successors = this.currentState.getSuccessors();
             for (BoardState successor : successors) {
-                /*if (! isStateInList(openList, successor) && ! isStateInList(closedList, successor)) {
-                    this.openList.add(successor);
-                }*/
                 this.openList.add(successor);
             }
-            System.out.println("Iteration: " + i);
-            i++;
         }
         return false;
     }
 
+    /**
+     * checks if the state already exists in the given list
+     * @param statesList collection of states
+     * @param newState state
+     * @return true if the state in in the states collection, false - else
+     */
     private boolean isStateInList(Collection<BoardState> statesList, BoardState newState) {
         for (BoardState state : statesList) {
             if (newState.compareBoardState(state)) {

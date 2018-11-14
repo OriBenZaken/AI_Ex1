@@ -10,8 +10,13 @@ public class IDS extends AbstractSearchAlgo {
     // Members
     private Stack<BoardState> openList;
 
+    /**
+     * IDS constructor
+     * @param initialBoard
+     */
     public IDS(Integer[][] initialBoard) {
         this.currentState = new BoardState(initialBoard, null, null);
+        // IDS uses stack as the open list
         this.openList = new Stack<>();
         this.cost = 0;
     }
@@ -25,6 +30,7 @@ public class IDS extends AbstractSearchAlgo {
             this.openList.clear();
             boolean result = limitedDFS(root, limit);
             if (result) {
+                // cost is defined to ne the depth of the goal state in the graph.
                 this.cost = this.currentState.getDepth();
                 return true;
             }
@@ -32,6 +38,12 @@ public class IDS extends AbstractSearchAlgo {
         }
     }
 
+    /**
+     * Runs a depth limited DFS
+     * @param root root node
+     * @param limit depth limit
+     * @return true if a goal state was found, false- else
+     */
     private boolean limitedDFS(BoardState root, int limit) {
         this.openList.push(root);
         while (!this.openList.isEmpty()) {

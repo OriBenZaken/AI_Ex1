@@ -4,7 +4,7 @@ import java.util.List;
 /**
  * Created by אורי on 11/11/2018.
  */
-public class BoardState implements IState<Integer[][], CommonEnums.Operators> {
+public class BoardState {
     // Members
     private Integer[][] board;
     private BoardState parent;
@@ -21,17 +21,14 @@ public class BoardState implements IState<Integer[][], CommonEnums.Operators> {
             this.depth = this.parent.getDepth() + 1;
         }
     }
-    @Override
     public Integer[][] getBoard() {
         return this.board;
     }
 
-    @Override
     public BoardState getParent() {
         return this.parent;
     }
 
-    @Override
     public CommonEnums.Operators getOriginOpertaor() {
         return this.originOperator;
     }

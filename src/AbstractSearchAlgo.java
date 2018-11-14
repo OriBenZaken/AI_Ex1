@@ -31,6 +31,7 @@ abstract public class AbstractSearchAlgo implements ISerachAlgorithm {
     public String getSolutionPath() {
         StringBuilder stringBuilder = new StringBuilder();
         BoardState state = currentState;
+        // starts from the goal state, following up the tree to the root state
         while (state.getParent() != null) {
             stringBuilder.insert(0, CommonEnums.getOperatorAbbrevation(state.getOriginOpertaor()));
             state = state.getParent();
