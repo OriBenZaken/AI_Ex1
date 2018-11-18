@@ -1,14 +1,18 @@
+/*
+Ori Ben-Zaken
+311492110
+ */
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Main class.
+ * java_ex1 class.
  * AI - Ex1
  * Submitted by: Ori Ben-Zaken, ID: 311492110
  */
-public class Main {
+public class java_ex1 {
     // Members
     static CommonEnums.SearchAlgorithms algoType;
     static int boardSize;
@@ -21,8 +25,7 @@ public class Main {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        // todo: change to input.txt
-        getProblemDefinesFromFile("input2.txt");
+        getProblemDefinesFromFile("input.txt");
         ISerachAlgorithm searchAlgorithm = null;
         switch (algoType) {
             case BFS:
@@ -39,8 +42,7 @@ public class Main {
         }
         // runs the search algorithm
         searchAlgorithm.runSearch();
-        //todo: change to output.txt
-        writeResultsToFile(searchAlgorithm, "output_test.txt");
+        writeResultsToFile(searchAlgorithm, "output.txt");
         return;
     }
 

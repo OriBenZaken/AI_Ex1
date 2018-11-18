@@ -1,11 +1,12 @@
+/*
+Ori Ben-Zaken
+311492110
+ */
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-/**
- * Created by אורי on 11/11/2018.
- */
 public class BFS extends AbstractSearchAlgo {
     // Members
     private Queue<BoardState> openList;

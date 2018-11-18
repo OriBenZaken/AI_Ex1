@@ -1,3 +1,7 @@
+/*
+Ori Ben-Zaken
+311492110
+ */
 /**
  * Interface of search algorithm
  */

@@ -1,9 +1,10 @@
+/*
+Ori Ben-Zaken
+311492110
+ */
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by אורי on 11/11/2018.
- */
 abstract public class AbstractSearchAlgo implements ISerachAlgorithm {
     // Members
     protected List<BoardState> closedList = new ArrayList<>();

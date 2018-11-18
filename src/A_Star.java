@@ -1,11 +1,11 @@
+/*
+Ori Ben-Zaken
+311492110
+ */
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
-/**
- * Created by אורי on 11/11/2018.
- */
 public class A_Star extends AbstractSearchAlgo {
     // Members
     private PriorityQueue<BoardState> openList;
@@ -24,7 +24,7 @@ public class A_Star extends AbstractSearchAlgo {
             this.closedList.add(currentState);
             if (currentState.isGoal()) {
                 // sum of all the values of f(n) in the path from the root to the goal state
-                this.cost = calculateTripCost(this.currentState);
+                this.cost = this.currentState.getDepth();
                 return true;
             }
             List<BoardState> successors = this.currentState.getSuccessors();
@@ -70,7 +70,7 @@ public class A_Star extends AbstractSearchAlgo {
      */
     public int getManhattanDistance(int size, int num, int row, int col) {
         if (num == 0) {
-            return Math.abs(row - (size - 1)) + Math.abs(col - (size - 1));
+            return 0;
         }
         int expectedRow =  (int) (Math.ceil((float)num/size) ) -1;
         int expectedCol = (num % size + (size -1)) % size;

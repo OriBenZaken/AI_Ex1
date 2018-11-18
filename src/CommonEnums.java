@@ -1,5 +1,6 @@
-/**
- * Created by אורי on 11/11/2018.
+/*
+Ori Ben-Zaken
+311492110
  */
 public class CommonEnums {
     enum Operators {

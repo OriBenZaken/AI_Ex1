@@ -1,11 +1,10 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
+/*
+Ori Ben-Zaken
+311492110
+ */
 import java.util.List;
 import java.util.Stack;
 
-/**
- * Created by אורי on 11/11/2018.
- */
 public class IDS extends AbstractSearchAlgo {
     // Members
     private Stack<BoardState> openList;

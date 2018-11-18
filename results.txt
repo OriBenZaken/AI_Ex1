@@ -1,0 +1,12 @@
+input.txt - LL 10 0 - V
+input2.txt - L 3 1 - V
+input3.txt - L 3 1 - V
+input4.txt - L 3 0 - V
+input5.txt - L 2 1 - V
+input6.txt - DOES NOT STOP
+input_elad1.txt - RDRULDLURRDDLUURDDLULU 41655 22 - V
+input_elad2.txt - URRDLULDRRULULL 1946 15 - V
+input_elad3.txt - ULLDRULURRDDLLURUL 5010 18 - V
+my_input1.txt - LULU 49 4 - V
+my_input2.txt - URRDLULDRRULULL 1946 15 - V
+my_input3.txt - ULU 4 3 - V
