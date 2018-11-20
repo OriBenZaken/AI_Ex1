@@ -3,9 +3,10 @@ Ori Ben-Zaken
 311492110
  */
 /**
- * Interface of search algorithm
+ * Interface of AI search algorithm.
+ * Possible implementations: IDS, BFS, A*,...
  */
-public interface ISerachAlgorithm {
+public interface ISearchAlgorithm {
     /**
      * runs the search algorithm
      * @return true - if goal state was found, false - else

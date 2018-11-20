@@ -5,13 +5,17 @@ Ori Ben-Zaken
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * IDS Class.
+ * Implements ISearchAlgorithm and Iterative DFS algorithm.
+ */
 public class IDS extends AbstractSearchAlgo {
     // Members
     private Stack<BoardState> openList;
 
     /**
      * IDS constructor
-     * @param initialBoard
+     * @param initialBoard initial board state.
      */
     public IDS(Integer[][] initialBoard) {
         this.currentState = new BoardState(initialBoard, null, null);
@@ -20,6 +24,10 @@ public class IDS extends AbstractSearchAlgo {
         this.cost = 0;
     }
 
+    /**
+     * runs the search algorithm
+     * @return true - if goal state was found, false - else
+     */
     @Override
     public boolean runSearch() {
         int limit = 0;

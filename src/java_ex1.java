@@ -25,8 +25,8 @@ public class java_ex1 {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        getProblemDefinesFromFile("input.txt");
-        ISerachAlgorithm searchAlgorithm = null;
+        getProblemDefinesFromFile("input_elad2.txt");
+        ISearchAlgorithm searchAlgorithm = null;
         switch (algoType) {
             case BFS:
                 searchAlgorithm = new BFS(initialState);
@@ -88,7 +88,7 @@ public class java_ex1 {
      * @param algorithm the search algorithm
      * @param fileName file name
      */
-    public static void writeResultsToFile(ISerachAlgorithm algorithm, String fileName) {
+    public static void writeResultsToFile(ISearchAlgorithm algorithm, String fileName) {
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(new FileWriter(fileName));

@@ -2,6 +2,11 @@
 Ori Ben-Zaken
 311492110
  */
+
+/**
+ * Common enums (and related utils) for:
+ * Operators, SerachAlgorithms
+ */
 public class CommonEnums {
     enum Operators {
         UP, DOWN, LEFT, RIGHT

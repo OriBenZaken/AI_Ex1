@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Board state class
+ * Board state class.
+ * Describes a state in the tails puzzle game.
  */
 public class BoardState {
     // Members
@@ -17,6 +18,8 @@ public class BoardState {
     private CommonEnums.Operators originOperator;
     // depth in the states graph
     private int depth;
+    // creation stamp of the state
+    private int timeStamp;
 
     /**
      * Board state constructor
@@ -42,6 +45,22 @@ public class BoardState {
      */
     public Integer[][] getBoard() {
         return this.board;
+    }
+
+    /**
+     * returns time stamp
+     * @return time stamp
+     */
+    public int getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    /**
+     * sets the time stamp
+     * @param timeStamp time stamp
+     */
+    public void setTimeStamp(int timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
     /**

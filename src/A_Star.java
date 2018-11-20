@@ -6,18 +6,33 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/**
+ * A* Algorithm Class
+ * Implements ISearchAlgorithm and A* algorithm.
+ */
 public class A_Star extends AbstractSearchAlgo {
     // Members
     private PriorityQueue<BoardState> openList;
 
+    /**
+     * A_Star constructor.
+     * @param initialBoard initial board state
+     */
     public A_Star(Integer[][] initialBoard) {
         this.currentState = new BoardState(initialBoard, null, null);
         // the open list in A* is a priority queue
         this.openList = new PriorityQueue<>(new ManhattanDistances());
     }
 
+    /**
+     * runs the search algorithm
+     * @return true - if goal state was found, false - else
+     */
     @Override
     public boolean runSearch() {
+        int timeStamp = 0;
+        this.currentState.setTimeStamp(timeStamp);
+        timeStamp++;
         openList.add(this.currentState);
         while (!this.openList.isEmpty()) {
             this.currentState = this.openList.remove();
@@ -29,7 +44,9 @@ public class A_Star extends AbstractSearchAlgo {
             }
             List<BoardState> successors = this.currentState.getSuccessors();
             for (BoardState successor : successors) {
+                successor.setTimeStamp(timeStamp);
                 this.openList.add(successor);
+                timeStamp++;
             }
         }
         return false;
@@ -98,7 +115,11 @@ public class A_Star extends AbstractSearchAlgo {
 
         @Override
         public int compare(BoardState o1, BoardState o2) {
-            return getF(o1) - getF(o2);
+            if (getF(o1) != getF(o2)) {
+                return getF(o1) - getF(o2);
+            } else {
+                return o2.getTimeStamp() - o1.getTimeStamp();
+            }
         }
     }
 }

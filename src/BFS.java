@@ -7,10 +7,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+/**
+ * BFS Class.
+ * Implements ISearchAlgorithm and BFS algorithm.
+ */
 public class BFS extends AbstractSearchAlgo {
     // Members
     private Queue<BoardState> openList;
 
+    /**
+     * BFS constructor
+     * @param initialBoard
+     */
     public BFS(Integer[][] initialBoard) {
         this.currentState = new BoardState(initialBoard, null, null);
         // the open list in BFS is a regular queue.
@@ -19,6 +27,10 @@ public class BFS extends AbstractSearchAlgo {
         this.cost = 0;
     }
 
+    /**
+     * runs the search algorithm
+     * @return true - if goal state was found, false - else
+     */
     @Override
     public boolean runSearch() {
         openList.add(this.currentState);
