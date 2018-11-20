@@ -25,7 +25,7 @@ public class java_ex1 {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        getProblemDefinesFromFile("input_elad2.txt");
+        getProblemDefinesFromFile("input_elad3.txt");
         ISearchAlgorithm searchAlgorithm = null;
         switch (algoType) {
             case BFS:

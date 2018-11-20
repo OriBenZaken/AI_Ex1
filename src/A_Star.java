@@ -118,7 +118,10 @@ public class A_Star extends AbstractSearchAlgo {
             if (getF(o1) != getF(o2)) {
                 return getF(o1) - getF(o2);
             } else {
-                return o2.getTimeStamp() - o1.getTimeStamp();
+                if (o1.getTimeStamp() < o2.getTimeStamp()) {
+                    return -1;
+                }
+                return 1;
             }
         }
     }
